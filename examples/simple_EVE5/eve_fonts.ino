@@ -165,7 +165,6 @@ const uint8_t font0[] =
 
 
 uint32_t eve_init_fonts(void) {
-  const BridgetekEVE5::EVE_GPU_FONT_HEADER *font0_hdr = (const BridgetekEVE5::EVE_GPU_FONT_HEADER *)font0;
   const uint32_t font0_size = sizeof(font0);
 
   eve.LIB_WriteDataToRAMG(font0, font0_size, font0_offset);

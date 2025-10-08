@@ -650,7 +650,6 @@ class BridgetekEVE5
         uint32_t    FontNumberCharacters;
     } EVE_GPU_EXT_FONT_HEADER;
 
-    /* ### BEGIN 5 ### */
     /* On EVE5 onwards this is called the Extended 2 Font Structure. */
     typedef struct
     {
