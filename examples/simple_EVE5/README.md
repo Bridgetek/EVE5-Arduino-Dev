@@ -64,33 +64,6 @@ This function is used to show the touchscreen calibration screen and prompt the 
 
 The platform specific functions in `simple.ino` are called from this routine to store and read touchscreen calibration settings so that the user only needs to perform the action once.
 
-### `eve_fonts.ino`
-
-This file contains the data array of a font which was produced by the Font Converter tool which is part of EVE Asset Builder. The code in this file will send the commands to the co-processor to load the font into RAM_G and set-up the font for use.
-
-The font created from EVE Asset Builder will be located at a certain address in RAM_G. In the example here the font was at address 1000(decimal). This must be 32-bit aligned.
-
-```
-const uint32_t font0_offset = 1000; // Taken from commmand line
-const uint8_t font0[] = { <data for font> };
-```
-
-The font data in the array `font0` is directly written into RAM_G using the API call `EVE_LIB_WriteDataToRAMG`.
-This function takes a pointer to an array and writes to RAM_G.
-
-```
-    eve.LIB_WriteDataToRAMG(font0, font0_size, font0_offset);
-```
-
-Once this has been written to RAM_G then the EVE device must be instructed how make a font use the data in RAM_G.
-
-```
-    eve.CMD_DLSTART();
-    eve.CMD_SETFONT(FONT_CUSTOM, font0_offset, 0);
-    eve.DISPLAY();
-    eve.CMD_SWAP();
-```
-
 ### `eve_images.c`
 
 The BridgeTek logo is stored in an array in this file as a JPEG image. The data from the array is sent to the
@@ -152,6 +125,49 @@ Next `eve.BITMAP_LAYOUT` and `eve.BITMAP_SIZE` commands tell the graphics device
 Some EVE devices have a larger address space and also have an `eve.BITMAP_SOURCE_H` command for the higher address bits.
 Other EVE devices have `eve.BITMAP_LAYOUT_H` and `eve.BITMAP_SIZE_H` to cope with larger supported bitmap sizes.
 
+A `eve.CMD_SWAP()` command **must** be called to register the bitmap handle on the device so that it can be used by
+subsequent display lists.
+
+### `eve_fonts.ino`
+
+This file contains the data array of a font which was produced by the Font Converter tool which is part of EVE Asset Builder. The code in this file will send the commands to the co-processor to load the font into RAM_G and set-up the font for use.
+
+The font created from EVE Asset Builder will be located at a certain address in RAM_G. In the example here the font was at address 1000(decimal). This must be 32-bit aligned.
+
+```
+const uint32_t font0_offset = 1000; // Taken from commmand line
+const uint8_t font0[] = { <data for font> };
+```
+
+The font data in the array `font0` is directly written into RAM_G using the API call `EVE_LIB_WriteDataToRAMG`.
+This function takes a pointer to an array and writes to RAM_G.
+
+```
+    eve.LIB_WriteDataToRAMG(font0, font0_size, font0_offset);
+```
+
+Once this has been written to RAM_G then the EVE device must be instructed how make a font use the data in RAM_G.
+
+```
+    eve.CMD_DLSTART();
+    eve.CMD_SETFONT(FONT_CUSTOM, font0_offset, 0);
+    eve.DISPLAY();
+    eve.CMD_SWAP();
+```
+
+A font must be set-up on the device before the font can be used. A font is essentially a set of bitmaps,
+one for each character. The bitmap parameters are therefore needed to be setup in the same way as other
+bitmaps are. The device needs the `eve.BITMAP_SOURCE`, `eve.BITMAP_LAYOUT` and `eve.BITMAP_SIZE` commands
+to properly render the font's characters.
+
+The `eve.CMD_SETFONT` command will initialise the bitmap settings for the font using information in the font
+data structure and associate the font with the handle.
+The `eve.BITMAP_SOURCE`, `eve.BITMAP_LAYOUT` and `eve.BITMAP_SIZE` commands are generated automatically by
+the co-processor using data from the font structure and are therefore not required.
+
+A `eve.CMD_SWAP()` command **must** be called to register the font handle on the device so that it can be used by
+subsequent display lists.
+
 ### `eve.helper.c`
 
 Currently the only function of this file is to read a single touch tag from the screen.
@@ -175,8 +191,8 @@ The example contains a common directory with several files which comprises all t
 | File/Folder | Description |
 | --- | --- |
 | [simple.ino](simple.ino) | Example source code file |
+| [eve_example.h](eve_example.h) | Header file for examaple |
 | [eve_calibrate.ino](eve_calibrate.ino) | Calibrations routines |
 | [eve_fonts.ino](eve_fonts.ino) | Font helper routines |
 | [eve_helper.ino](eve_helper.ino) | General helper routines (touch detection) |
 | [eve_images.ino](eve_images.ino) | Image helper routines |
-| [docs](docs) | Documentation support files |
