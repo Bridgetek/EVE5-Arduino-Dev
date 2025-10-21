@@ -4,7 +4,7 @@
 
 This library is to provide an API to control the Bridgetek BT820 devices. It implements EVE API 5.
 
-The class name of the library is "BridgetekEVE5".
+The class name of the library is "Bridgetek_EVE5".
 
 The library provides an Arduino IDE interface to the EVE embedded development library [EVE-MCU-Dev](https://github.com/Bridgetek/Eve-MCU-Dev).
 It is programmed in the same way with minor changes and ensures that code is easily transferrable.
@@ -55,7 +55,7 @@ The sketch must include the following code:
 ```
 #include <BridgetekEVE5.h>
 
-BridgetekEVE5 eve;
+Bridgetek_EVE5 eve;
 
 void setup(){
   eve.setup(WVGA);
@@ -66,7 +66,7 @@ void setup(){
 The `#include <BridgetekEVE5.h>` line will add in the header for this
 library and the declarations and constants included in the library API.
 
-The `BridgetekEVE5 eve` creates a class for the library which is required to direct
+The `Bridgetek_EVE5 eve` creates a class for the library which is required to direct
 accesses to the EVE device to the library.
 
 The `eve.setup(WVGA)` command initialises the library to use a WVGA display which is
@@ -790,7 +790,7 @@ in white in the centre of a black background.
 ```
 #include <BridgetekEVE5.h>
 
-BridgetekEVE5 eve;
+Bridgetek_EVE5 eve;
 
 void setup() {
   Serial.begin(9600);

@@ -43,10 +43,10 @@
  @brief EVE library handle.
  @details This is the one instance of the EVE library. Available as a global to other files.
  */
-BridgetekEVE5 eve;
+Bridgetek_EVE5 eve;
 
 extern const uint8_t font0[];
-const BridgetekEVE5::EVE_GPU_FONT_HEADER *font0_hdr = (const BridgetekEVE5::EVE_GPU_FONT_HEADER *)font0;
+const Bridgetek_EVE5::EVE_GPU_FONT_HEADER *font0_hdr = (const Bridgetek_EVE5::EVE_GPU_FONT_HEADER *)font0;
 
 /**
  * @brief Functions used to store calibration data in file.

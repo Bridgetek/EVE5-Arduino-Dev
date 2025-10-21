@@ -1,5 +1,5 @@
 /**
- * @file BridgetekEVE5.cpp
+ * @file Bridgetek_EVE5.cpp
  * @brief Support BT820
  */
 /*
@@ -39,7 +39,7 @@
  */
 
 #include "Arduino.h"
-#include "BridgetekEVE5.h"
+#include "Bridgetek_EVE5.h"
 
 uint32_t EVE_DISP_WIDTH, EVE_DISP_HEIGHT;
 uint32_t EVE_DISP_HCYCLE, EVE_DISP_VCYCLE;
@@ -51,22 +51,22 @@ uint32_t EVE_TOUCH_ADDR;
 uint32_t EVE_DISP_LVDSTXCLKDIV, EVE_DISP_LVDSTXFORMAT;
 uint32_t EVE_RAM_G_CONFIG_SIZE = EVE_RAM_G_1_GBIT;
 
-BridgetekEVE5::BridgetekEVE5(void)
+Bridgetek_EVE5::Bridgetek_EVE5(void)
 {
 }
 
-void BridgetekEVE5::setup(uint32_t panel)
+void Bridgetek_EVE5::setup(uint32_t panel)
 {
     setpanel(panel);
 }
 
-void BridgetekEVE5::setup(uint32_t panel, uint32_t ramg)
+void Bridgetek_EVE5::setup(uint32_t panel, uint32_t ramg)
 {
     setpanel(panel);
     EVE_RAM_G_CONFIG_SIZE = ramg;
 }
 
-void BridgetekEVE5::setpanel(uint32_t panel)
+void Bridgetek_EVE5::setpanel(uint32_t panel)
 {
     if (panel == QVGA)
     {

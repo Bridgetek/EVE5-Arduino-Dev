@@ -44,13 +44,13 @@
 #include <stdint.h>
 
 #include <SPI.h>
-#include <BridgetekEVE5.h>
+#include <Bridgetek_EVE5.h>
 
 /**
  @brief EVE library handle.
  @details This is the one instance of the EVE library. Available as a global.
  */
-extern BridgetekEVE5 eve;
+extern Bridgetek_EVE5 eve;
 
 /**
  @brief Definitions of handles for custom fonts and bitmaps.

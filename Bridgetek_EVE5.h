@@ -1,5 +1,5 @@
 /**
- * @file BridgetekEVE5.h
+ * @file Bridgetek_EVE5.h
  * @brief Support BT820
  */
 /*
@@ -66,10 +66,10 @@ extern "C" {
 }
 //@}
 
-class BridgetekEVE5
+class Bridgetek_EVE5
 {
   public:
-    BridgetekEVE5(void);
+    Bridgetek_EVE5(void);
 
   void setup(uint32_t panel);
   void setup(uint32_t panel, uint32_t ramg);

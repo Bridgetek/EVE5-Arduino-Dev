@@ -1,9 +1,9 @@
 /* This code is used to test the generated library. */
 
 #include <SPI.h>
-#include <BridgetekEVE5.h>
+#include <Bridgetek_EVE5.h>
 
-BridgetekEVE5 eve;
+Bridgetek_EVE5 eve;
 
 void setup() {
   Serial.begin(9600);
