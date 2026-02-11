@@ -9,7 +9,7 @@
  *
  * This source code ("the Software") is provided by Bridgetek Pte Ltd
  * ("Bridgetek") subject to the licence terms set out
- * http://www.ftdichip.com/FTSourceCodeLicenceTerms.htm ("the Licence Terms").
+ * https://brtchip.com/wp-content/uploads/2021/11/BRT_Software_License_Agreement.pdf ("the Licence Terms").
  * You must read the Licence Terms before downloading or using the Software.
  * By installing or using the Software you agree to the Licence Terms. If you
  * do not agree to the Licence Terms then do not download or use the Software.
@@ -166,15 +166,27 @@ class Bridgetek_EVE5
     const uint32_t INT_VGA = 0xdul;
     const uint32_t OPT_1BIT = 0x0ul;
     const uint32_t OPT_3D = 0x0ul;
+    const uint32_t OPT_4BIT = 0x2ul;
+    const uint32_t OPT_BASELINE = 0x8000ul;
+    const uint32_t OPT_CASESENSITIVE = 0x2ul;
     const uint32_t OPT_CENTER = 0x600ul;
     const uint32_t OPT_CENTERX = 0x200ul;
     const uint32_t OPT_CENTERY = 0x400ul;
+    const uint32_t OPT_COMPLETEREG = 0x1000ul;
+    const uint32_t OPT_DIRECT = 0x800ul;
+    const uint32_t OPT_DIRSEP_UNIX = 0x8ul;
+    const uint32_t OPT_DIRSEP_WIN = 0x4ul;
+    const uint32_t OPT_DITHER = 0x100ul;
     const uint32_t OPT_FILL = 0x2000ul;
     const uint32_t OPT_FLASH = 0x40ul;
     const uint32_t OPT_FLAT = 0x100ul;
     const uint32_t OPT_FORMAT = 0x1000ul;
+    const uint32_t OPT_FS = 0x2000ul;
     const uint32_t OPT_FULLSCREEN = 0x8ul;
     const uint32_t OPT_FULLSPEED = 0x0ul;
+    const uint32_t OPT_HALFSPEED = 0x4ul;
+    const uint32_t OPT_IS_MMC = 0x10ul;
+    const uint32_t OPT_IS_SD = 0x20ul;
     const uint32_t OPT_MEDIAFIFO = 0x10ul;
     const uint32_t OPT_MONO = 0x1ul;
     const uint32_t OPT_NOBACK = 0x1000ul;
@@ -186,8 +198,10 @@ class Bridgetek_EVE5
     const uint32_t OPT_NOTEAR = 0x4ul;
     const uint32_t OPT_NOTICKS = 0x2000ul;
     const uint32_t OPT_OVERLAY = 0x80ul;
+    const uint32_t OPT_QUARTERSPEED = 0x8ul;
     const uint32_t OPT_RGB565 = 0x0ul;
     const uint32_t OPT_RIGHTX = 0x800ul;
+    const uint32_t OPT_SFNLOWER = 0x1ul;
     const uint32_t OPT_SIGNED = 0x100ul;
     const uint32_t OPT_SOUND = 0x20ul;
     const uint32_t OPT_TOUCH_100KHZ = 0x800ul;
@@ -198,6 +212,8 @@ class Bridgetek_EVE5
     const uint32_t OPT_TOUCH_ILI2511 = 0x4ul;
     const uint32_t OPT_TOUCH_QUICKSIM = 0x8000ul;
     const uint32_t OPT_TOUCH_TSC2007 = 0x5ul;
+    const uint32_t OPT_TRUECOLOR = 0x200ul;
+    const uint32_t OPT_YCBCR = 0x400ul;
     const uint32_t RAM_BIST = 0x7f8001c0ul;
     const uint32_t RAM_CMD = 0x7f000000ul;
     const uint32_t RAM_CMD_SIZE = (16*1024L);
@@ -503,7 +519,7 @@ class Bridgetek_EVE5
     void CMD_GRADIENT(int16_t x0,  int16_t y0,  uint32_t rgb0,  int16_t x1,  int16_t y1,  uint32_t rgb1) { ::EVE_CMD_GRADIENT(x0, y0, rgb0, x1, y1, rgb1); };
     void CMD_GRADIENTA(int16_t x0,  int16_t y0,  uint32_t argb0,  int16_t x1,  int16_t y1,  uint32_t argb1) { ::EVE_CMD_GRADIENTA(x0, y0, argb0, x1, y1, argb1); };
     void CMD_GRAPHICSFINISH(void) { ::EVE_CMD_GRAPHICSFINISH(); };
-    void CMD_INFLATE(uint32_t ptr) { ::EVE_CMD_INFLATE(ptr); };
+    void CMD_INFLATE(uint32_t ptr,  uint32_t options) { ::EVE_CMD_INFLATE(ptr, options); };
     void CMD_INTERRUPT(uint32_t ms) { ::EVE_CMD_INTERRUPT(ms); };
     void CMD_KEYS(int16_t x,  int16_t y,  int16_t w,  int16_t h,  int16_t font,  uint16_t options,  const char* string) { ::EVE_CMD_KEYS(x, y, w, h, font, options, string); };
     void CMD_LOADASSET(uint32_t dst,  uint32_t options) { ::EVE_CMD_LOADASSET(dst, options); };
