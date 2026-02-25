@@ -3,8 +3,16 @@
 /* See https://github.com/Bridgetek/Eve-MCU-Dev/ */
 
 #include "patch_base.h"
+#include <string.h>
+
+#if defined(ESP8266) || defined(ESP32)
+#include <pgmspace.h>
+#else
+#include <avr/pgmspace.h>
+#endif
+
 /* Include functions for EVE-MCU-Dev library API layer */
-#include <EVE.h>
+#include <EVE5.h>
 /* Include functions for EVE-MCU-Dev library Hardware Abstraction layer */
 #include <HAL.h>
 
@@ -39,7 +47,7 @@ void EVE_CMD_ENDTOUCHOFFSET()
 }
 
 // Extension code
-static const uint8_t patchdata[] =
+PROGMEM static const uint8_t patchdata[] =
 {
 	0x7c, 0xda, 0x00, 0x50, 0x00, 0x20, 0x68, 0x08, 0x78, 0x9c, 0xed, 0x56, 0x7d, 0x70, 0x13, 0xc7,
 	0x15, 0x5f, 0xdd, 0xca, 0x96, 0x25, 0xf9, 0x43, 0xd7, 0xa4, 0x7c, 0x15, 0x29, 0x2a, 0x13, 0xc7,
@@ -188,7 +196,21 @@ int eve_loadpatch(void)
 	// Load extension code to BT82x
 	EVE_LIB_BeginCoProList();
 	EVE_CMD_LOADPATCH(0);
-	EVE_LIB_WriteDataToCMD(patchdata, 2160);
+	/* Read the data from the program memory into CMD. */
+	uint8_t pgm[16];
+	uint32_t pgmoffset, pgmchunk;
+	for (pgmoffset = 0; pgmoffset < 2160; pgmoffset += 16)
+	{
+	    // Maximum of pgm buffer
+	    uint32_t chunk = sizeof(pgm);
+	    if (pgmoffset + chunk > 2160)
+	    {
+	        chunk = 2160 - pgmoffset;
+	    }
+	    // Load the pgm buffer
+	    memcpy_P(pgm, &patchdata[pgmoffset], chunk);
+	    EVE_LIB_WriteDataToCMD(pgm, chunk);
+	}
 	EVE_LIB_EndCoProList();
 	EVE_LIB_AwaitCoProEmpty();
 	EVE_LIB_GetCoProException(actual);

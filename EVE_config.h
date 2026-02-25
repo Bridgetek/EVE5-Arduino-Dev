@@ -45,7 +45,7 @@
 #ifndef EVE_API
 #define EVE_API 5
 #ifndef EVE_SUB_API
-#define EVE_SUB_API
+#define EVE_SUB_API 
 #endif // EVE_SUB_API
 #endif // EVE_API
 
@@ -112,6 +112,6 @@ extern uint32_t EVE_DISP_PCLKPOL, EVE_DISP_SWIZZLE, EVE_DISP_CSPREAD, EVE_DISP_D
 extern uint32_t EVE_DISP_PCLK, EVE_DISP_PCLK_FREQ;
 extern uint32_t EVE_TOUCH_ADDR;
 extern uint32_t EVE_DISP_LVDSTXCLKDIV, EVE_DISP_LVDSTXFORMAT;
-extern uint32_t EVE_RAM_G_CONFIG_SIZE;
+extern uint32_t EVE_RAM_G_SIZE;
 
 #endif /* _EVE_CONFIG_H_ */

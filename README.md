@@ -4,7 +4,7 @@
 
 This library is to provide an API to control the Bridgetek BT820 devices. It implements EVE API 5.
 
-The class name of the library is "Bridgetek_EVE5".
+The class name of the library is "Bridgetek_EVE5". This is version 1.1.2 of the Arduino Library.
 
 The library provides an Arduino IDE interface to the EVE embedded development library [EVE-MCU-Dev](https://github.com/Bridgetek/Eve-MCU-Dev).
 It is programmed in the same way with minor changes and ensures that code is easily transferrable.
@@ -329,7 +329,6 @@ void CMD_WAITCHANGE(uint32_t a)
 void CMD_WAITCOND(uint32_t a,  uint32_t func,  uint32_t ref,  uint32_t mask)
 
 int eve_loadpatch(void)
-
 void ALPHA_FUNC(uint8_t func,  uint8_t ref)
 void BEGIN(uint8_t prim)
 void BITMAP_HANDLE(uint8_t handle)
@@ -365,7 +364,6 @@ void Init(void)
 void JUMP(uint16_t dest)
 void LINE_WIDTH(uint16_t width)
 void MACRO(uint8_t m)
-void NOP(void)
 void PALETTE_SOURCE(uint32_t addr)
 void POINT_SIZE(uint16_t size)
 void RESTORE_CONTEXT(void)
@@ -383,6 +381,7 @@ void VERTEX2II(uint16_t x,  uint16_t y,  uint8_t handle, uint8_t cell)
 void VERTEX_FORMAT(uint8_t frac)
 void VERTEX_TRANSLATE_X(uint32_t x)
 void VERTEX_TRANSLATE_Y(uint32_t y)
+
 ```
 
 ### Library Public Variables
@@ -438,11 +437,9 @@ Therefore, taking `eve` as the name of the library class in a sketch, calling th
 ```
 ADC_DIFFERENTIAL
 ADC_SINGLE_ENDED
-ALPHA
 ANIM_HOLD
 ANIM_LOOP
 ANIM_ONCE
-API
 BEGIN_BITMAPS
 BEGIN_EDGE_STRIP_A
 BEGIN_EDGE_STRIP_B
@@ -458,7 +455,6 @@ BLEND_ONE_MINUS_DST_ALPHA
 BLEND_ONE_MINUS_SRC_ALPHA
 BLEND_SRC_ALPHA
 BLEND_ZERO
-BLUE
 CGRADIENT_CORNER_ZERO
 CGRADIENT_EDGE_ZERO
 COPROC_REPORT
@@ -512,8 +508,6 @@ FORMAT_RGB8
 FORMAT_TEXT8X8
 FORMAT_TEXTVGA
 FORMAT_YCBCR
-GLFORMAT
-GREEN
 INT_CMDEMPTY
 INT_CMDFLAG
 INT_CONVCOMPLETE
@@ -590,12 +584,10 @@ RAM_G_4_GBIT
 RAM_G_512_MBIT
 RAM_G_64_MBIT
 RAM_G_8_GBIT
-RAM_G_SIZE
 RAM_REG
 RAM_REPORT
 RAM_ROMSUB
 RAM_TOP
-RED
 ROMFONT_FORMATS
 ROMFONT_HEIGHTS
 ROMFONT_MAX
@@ -630,6 +622,13 @@ TOUCHMODE_ONESHOT
 VOL_ZERO
 WRAP_BORDER
 WRAP_REPEAT
+
+ALPHA
+API
+BLUE
+GLFORMAT
+GREEN
+RED
 
 REG_ANIM_ACTIVE
 REG_BOOT_CONTROL
@@ -836,9 +835,13 @@ void loop() {
 The examples in this library can be used to make a new Arduino IDE sketch.
 Complete example sketches added by this library can be found in "File -> Examples -> Bridgetek BT820".
 
-The `simple_EVE5` example is an ideal sketch to start with as it shows many
+Available examples are:
+
+The [`simple_EVE5` example](examples/simple_EVE5) is an ideal sketch to start with as it shows many
 aspects of writing a sketch for Arduino. It provides exactly the same display, functions
 and result as the `simple` example in [EVE-MCU-Dev](https://github.com/Bridgetek/Eve-MCU-Dev) API.
+
+The [`gyminterval_EVE5` example](examples/gyminterval_EVE5) is a more complex example that animates countdown timers.
 
 ## Module Connections
 

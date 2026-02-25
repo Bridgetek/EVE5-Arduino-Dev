@@ -49,7 +49,7 @@ uint32_t EVE_DISP_PCLKPOL, EVE_DISP_SWIZZLE, EVE_DISP_CSPREAD, EVE_DISP_DITHER;
 uint32_t EVE_DISP_PCLK, EVE_DISP_PCLK_FREQ;
 uint32_t EVE_TOUCH_ADDR;
 uint32_t EVE_DISP_LVDSTXCLKDIV, EVE_DISP_LVDSTXFORMAT;
-uint32_t EVE_RAM_G_CONFIG_SIZE = EVE_RAM_G_1_GBIT;
+uint32_t EVE_RAM_G_SIZE = Bridgetek_EVE5::RAM_G_1_GBIT;
 
 Bridgetek_EVE5::Bridgetek_EVE5(void)
 {
@@ -63,7 +63,17 @@ void Bridgetek_EVE5::setup(uint32_t panel)
 void Bridgetek_EVE5::setup(uint32_t panel, uint32_t ramg)
 {
     setpanel(panel);
-    EVE_RAM_G_CONFIG_SIZE = ramg;
+    EVE_RAM_G_SIZE = ramg;
+}
+
+uint16_t Bridgetek_EVE5::DISP_WIDTH(void)
+{
+    return EVE_DISP_WIDTH;
+}
+
+uint16_t Bridgetek_EVE5::DISP_HEIGHT(void)
+{
+    return EVE_DISP_HEIGHT;
 }
 
 void Bridgetek_EVE5::setpanel(uint32_t panel)
